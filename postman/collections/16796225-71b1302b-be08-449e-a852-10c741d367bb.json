@@ -1,0 +1,1349 @@
+{
+	"info": {
+		"_postman_id": "16796225-71b1302b-be08-449e-a852-10c741d367bb",
+		"name": "FluxMartApis",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Create Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"cartId\",json.id);"
+								],
+								"type": "text/javascript",
+								"id": "883d782c-7020-467e-bc2b-d7cc5f10bda2"
+							}
+						}
+					],
+					"id": "16796225-c37477e6-0dc5-4454-9ccf-ea99f358bc8e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cart Contents",
+					"id": "16796225-82a50114-0350-4e19-b10d-364dda5e26b5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/{{cartId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item To Cart",
+					"id": "16796225-4f373138-218e-49c8-b638-6cb1d29078aa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"productId\":21\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/{{cartId}}/items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Cart Item",
+					"id": "16796225-7ef3b83f-edbe-45bc-a0fc-89d5601c5ea4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"quantity\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/{{cartId}}/items/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart Item",
+					"id": "16796225-7a61cea7-47e8-48c6-8484-bb0fc94b8ff4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/{{cartId}}/items/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Cart",
+					"id": "16796225-33949d64-6e0b-4cb0-8139-d09457e8558e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/{{cartId}}/items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-49f17e59-1fb0-4df9-8c9c-23cf999802d7"
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"id": "16796225-31bf233d-2e33-42f6-9245-f8625c3fd4c2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "categoryId",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Details",
+					"id": "16796225-cb97c659-c784-4315-8960-6d38f2df7264",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/{{productId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-d086e2b4-d662-43d3-b4e6-fb7002dd44bc"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "UsersProfile",
+					"item": [
+						{
+							"name": "Get Users Profile",
+							"id": "16796225-76c5bd97-5e8f-4b99-b2b1-921c9369d987",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/{{id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Users Profile",
+							"id": "16796225-54f4f669-189c-4f1c-b118-c7b6180ba17c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/{{id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "16796225-e5603e88-83f4-4d5e-b207-06aa58b34386"
+				},
+				{
+					"name": "Register Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"userId\",json.id);"
+								],
+								"type": "text/javascript",
+								"id": "92d48357-c33f-4839-a8bf-5c4bb97c8ee0"
+							}
+						}
+					],
+					"id": "16796225-ada0ffe9-cf32-4b15-bb8c-6eb880ab2cfb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"username\":\"cherry\",\r\n    \"email\":\"rismocher@gmail.com\",\r\n    \"password\":\"cherry\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"id": "16796225-a8d86f88-ec17-4a29-af8f-90de08b75c11",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId}}/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"id": "16796225-3f5984cb-0e75-4047-975a-1358d45300ef",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId}}/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-c3d5acaa-2275-46e6-8dc2-2b98c636acce"
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();\r",
+									"pm.collectionVariables.set(\"accessToken\",json.token);"
+								],
+								"type": "text/javascript",
+								"id": "6f4b0604-54c4-471a-92fd-0a349c7736bc"
+							}
+						}
+					],
+					"id": "16796225-a3117a60-3b54-4b49-9083-6f6112c9b011",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"email\":\"rismocher@gmail.com\",\r\n    \"password\":\"cherry\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ValidateToken",
+					"id": "16796225-dc75e0b2-649a-4a5d-9d8a-f359d0f314c1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/validate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"id": "16796225-f732f964-4b56-43d7-a161-851258e8c357",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/currentUser",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"currentUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Access Token",
+					"id": "16796225-5731cae6-9775-430a-b677-d548288d61fd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-fff08834-f034-48a8-9bd8-64222b228e2f"
+		},
+		{
+			"name": "Checkout",
+			"item": [
+				{
+					"name": "checkout",
+					"id": "16796225-dcfabdf3-a2a6-4190-a1ed-a0eb19043214",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"cartId\":\"{{cartId}}\",\r\n    \"paymentGateway\":\"STKPush5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/checkout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-5e8c92c9-b604-48c5-8bbb-a996350b8f38"
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get Order Details",
+					"id": "16796225-74c3dfd3-39af-49e6-abab-61f50b418b14",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-d45c5ab5-3404-419f-b0e6-744477aded71"
+		},
+		{
+			"name": "Shipping",
+			"item": [
+				{
+					"name": "Get Shipping options",
+					"id": "16796225-9087fdc2-ffd4-4686-b696-021b4e0b1c77",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shipping/rates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shipping",
+								"rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Track Shipment",
+					"id": "16796225-6dc9c684-f67b-409c-88fe-c43b2689e324",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/shipping/track",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"shipping",
+								"track"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-2df47303-2854-4f34-bf11-adf70af60ac9"
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Get All Products",
+							"id": "16796225-a701278c-5c09-4c8d-8b43-1eb7445b47d9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "categoryId",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "pageNumber",
+											"value": "5",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Details",
+							"id": "16796225-5aadf5c2-a05d-47c4-b6f6-143c3cb34b4d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/{{productId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var json = pm.response.json();\r",
+											"pm.collectionVariables.set(\"productId\",json.id);"
+										],
+										"type": "text/javascript",
+										"id": "a31e22bb-1f4b-4a2b-a281-7504842e932c"
+									}
+								}
+							],
+							"id": "16796225-d46982d8-0a95-4823-8c17-5f739743d67f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n    \"name\":\"Desktop Pc\",\r\n    \"categoryId\":1,\r\n    \"price\":30000,\r\n    \"descriptions\":\"Hp intel\",\r\n    \"quantity\":5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"id": "16796225-b63a068d-3710-4620-8115-5af05a42e1de",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Desktop Pc\",\r\n    \"categoryId\":1,\r\n    \"price\":30000,\r\n    \"descriptions\":\"Hp intel\",\r\n    \"quantity\":50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products/{{productId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"id": "16796225-3b272dc7-5a19-4800-b123-d3696e4b8b76",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products/{{productId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Paginated Products",
+							"id": "16796225-0c2cd63c-dc3c-4625-835b-d3bf0a997ec5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/pages?pageSize=6&pageNumber=0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"pages"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "6"
+										},
+										{
+											"key": "pageNumber",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Sorted Products",
+							"id": "16796225-5010e419-6b2b-4564-a96d-f06b367708d1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products?sort=categoryId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "categoryId"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "16796225-20abd348-1b4c-4576-9e00-cd845bf2fbad"
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Categories",
+							"id": "16796225-3ab98d8b-7498-400f-bd3e-7d87862122a8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/categories",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Categorie",
+							"id": "16796225-b5d951da-27f4-4d33-9d62-fbbfbb5648f8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Accessories\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/categories",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "16796225-b9e87f43-86c6-4acb-b758-3ba01bd0626d"
+				},
+				{
+					"name": "Tags",
+					"item": [
+						{
+							"name": "Create Tag",
+							"id": "16796225-f51571c8-7bdf-4e37-b0cf-ba3873aeabc3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tags",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tags"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Tags",
+							"id": "16796225-2e605fe0-c0e4-46e9-b2ec-1079b8e90420",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tags",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tags"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "16796225-90ae71cb-4490-44a8-ade2-85d7ebc9daad"
+				},
+				{
+					"name": "POS",
+					"item": [
+						{
+							"name": "Post Sales",
+							"id": "16796225-5cd61eab-8600-4e01-9ff1-e512b2b10d30",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pos/sale",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pos",
+										"sale"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pos Sale Details",
+							"id": "16796225-96724e84-537d-427e-9a6f-14c192b57883",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pos/sales/{{id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pos",
+										"sales",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Sales",
+							"id": "16796225-df21df20-8e55-4818-9cc1-7f609e1de6d2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pos/sales",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pos",
+										"sales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Print Receipt",
+							"id": "16796225-36302103-f4c0-4db6-9f4d-09e94c5d6aca",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n    \"productId\":20\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pos/receipt/{{id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pos",
+										"receipt",
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Total Sales",
+							"id": "16796225-92074622-eac5-46e6-acc9-0c65d9103a4a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pos/daily-summary",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pos",
+										"daily-summary"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "16796225-503b6089-e931-4ec5-a147-d90d07145acb"
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get All Users",
+							"id": "16796225-5d4ca528-8dfa-45a8-860e-429198a0e528",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "16796225-7ddc2095-d729-482e-b53e-78f164bfbca2"
+				},
+				{
+					"name": "Dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" Sales, orders, users summary"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"id": "0df14fe1-7a2c-4d47-b5bf-67f526a48025"
+							}
+						}
+					],
+					"id": "16796225-21d5a305-e2d7-45a9-ab00-f9e1e9e321e3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/dashboard? Sales, orders, users summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": " Sales, orders, users summary",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Managed Products",
+					"id": "16796225-70cc0567-ad08-4290-ae7e-aa94e917f2e9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"id": "16796225-abcbeab6-342a-4bbf-a58b-6344be9d5a7d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sales Report",
+					"id": "16796225-6c97e8b8-c0d3-4099-b139-3bf95b72c024",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/sales-report",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"sales-report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Online-vs-Cash",
+					"id": "16796225-2ddf843e-73f9-4f88-b1ae-5bd686c1403a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/online-vs-cash",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"online-vs-cash"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-77a2c193-1de9-4d9e-9f64-c751040467b2"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "3ce519df-dda9-44f0-83f8-b053be557d77"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "e41422e5-c48b-4f82-a198-f0eb33e3217f"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "cartId",
+			"value": ""
+		},
+		{
+			"key": "productId",
+			"value": ""
+		},
+		{
+			"key": "userId",
+			"value": ""
+		}
+	]
+}
