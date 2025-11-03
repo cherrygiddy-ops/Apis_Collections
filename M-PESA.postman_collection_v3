@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "905adbc0-b6f1-4212-b217-93c3d825bfb6",
+		"name": "M-PESA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16796225"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = pm.response.json();\r",
+							"pm.collectionVariables.set(\"access_token\", json.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/token",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Call Backs url",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{M-pesa access_token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/register-url",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"register-url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate M-pesa Response",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n   \"TransactionType\": \"Pay Bill\",\r\n   \"TransID\":\"RKTQDM7W6S\",\r\n   \"TransTime\":\"20191122063845\",\r\n   \"TransAmount\":\"10\",\r\n   \"BusinessShortCode\": \"600638\",\r\n   \"BillRefNumber\":\"Order 1\",\r\n   \"InvoiceNumber\":\"\",\r\n   \"OrgAccountBalance\":\"\",\r\n   \"ThirdPartyTransID\": \"\",\r\n   \"MSISDN\":\"25470****149\",\r\n   \"FirstName\":\"John\",\r\n   \"MiddleName\":\"\",\r\n   \"LastName\":\"Doe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/validation",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"validation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Simulate c2b Transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ShortCode\": 600999,\r\n    \"Msisdn\":\"254708374149\",\r\n    \"BillRefNumber\":\"18\",\r\n    \"Amount\":1,\r\n    \"CommandID\":\"CustomerPayBillOnline\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/simulate-c2b",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"simulate-c2b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order For C2B Transaction",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"billRefNumber\":19\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/updateC2BTransaction",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"updateC2BTransaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initiate STK Push",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"PhoneNumber\":\"254714500597\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/stk-transaction-request",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"stk-transaction-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get STK Transaction Results",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/stk-transaction-result",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"stk-transaction-result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query Status Of STK Push",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CheckoutRequestID\":\"ws_CO_31102025204917184714500597\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/query-lnm-request",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"query-lnm-request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update STK Push Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/updateStkPayments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"updateStkPayments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions Reversal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/transaction-reversal",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"transaction-reversal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Perform B2C Transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Remarks\":\"Test remarks\",\r\n    \"Amount\":100,\r\n    \"Occasion\":\"ok\",\r\n    \"CommandID\":\"SalaryPayment\",\r\n    \"PartyB\":\"2540714500597\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/b2c-transaction",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"b2c-transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Simulate B2C Transactions Results",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"Remarks\":\"Test remarks\",\r\n    \"Amount\":100,\r\n    \"Occasion\":\"ok\",\r\n    \"CommandID\":\"SalaryPayment\",\r\n    \"PartyB\":\"0714500597\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/simulate-transaction-result",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"simulate-transaction-result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions Results",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Result\":{\r\n        @JsonProperty(\"ConversationID\")\r\n\tprivate String conversationID;\r\n\r\n\t@JsonProperty(\"ReferenceData\")\r\n\tprivate ReferenceData referenceData;\r\n\r\n\t@JsonProperty(\"OriginatorConversationID\")\r\n\tprivate String originatorConversationID;\r\n\r\n\t@JsonProperty(\"ResultDesc\")\r\n\tprivate String resultDesc;\r\n\r\n\t@JsonProperty(\"ResultType\")\r\n\tprivate String resultType;\r\n\r\n\t@JsonProperty(\"ResultCode\")\r\n\tprivate String resultCode;\r\n\r\n\t@JsonProperty(\"ResultParameters\")\r\n\tprivate ResultParameters resultParameters;\r\n\r\n\t@JsonProperty(\"TransactionID\")\r\n\tprivate String transactionID;\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/transaction-result",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"transaction-result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "B2C TimeOut",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/b2c-queue-timeout",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"b2c-queue-timeout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Account Balance",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/m-pesa/check-account-balance",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"m-pesa",
+						"check-account-balance"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "M-pesa access_token",
+			"value": ""
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
