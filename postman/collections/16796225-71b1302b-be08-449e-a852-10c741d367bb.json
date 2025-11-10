@@ -821,13 +821,40 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Desktop Pc\",\r\n    \"categoryId\":1,\r\n    \"price\":30000,\r\n    \"descriptions\":\"Hp intel\",\r\n    \"quantity\":50\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Desktop Pc",
+											"type": "text"
+										},
+										{
+											"key": "categoryId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "30000",
+											"type": "text"
+										},
+										{
+											"key": "descriptions",
+											"value": "Hp intel",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "imageFiles",
+											"type": "file",
+											"uuid": "e754d2be-ad48-4762-8318-4bf10da22712",
+											"src": "postman-cloud:///1f0be2c5-3735-4070-8ce7-d18b81b51fe7"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{baseUrl}}/products/{{productId}}",
