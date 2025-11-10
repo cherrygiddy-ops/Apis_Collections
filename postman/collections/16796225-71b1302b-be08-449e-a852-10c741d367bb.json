@@ -786,7 +786,7 @@
 											"src": "postman-cloud:///1f0be2c5-3735-4070-8ce7-d18b81b51fe7"
 										},
 										{
-											"key": "imagesFiles",
+											"key": "imageFiles",
 											"type": "file",
 											"uuid": "a72db5d6-9f4f-44a5-8bec-3b9e7e2b1318",
 											"src": "postman-cloud:///1f0be2c6-6cdb-40c0-8826-76ce1207abc4"
