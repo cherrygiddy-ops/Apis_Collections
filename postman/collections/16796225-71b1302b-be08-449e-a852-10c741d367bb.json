@@ -727,12 +727,14 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "a31e22bb-1f4b-4a2b-a281-7504842e932c",
 										"exec": [
 											"var json = pm.response.json();\r",
 											"pm.collectionVariables.set(\"productId\",json.id);"
 										],
 										"type": "text/javascript",
-										"id": "a31e22bb-1f4b-4a2b-a281-7504842e932c"
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -750,13 +752,46 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "\r\n{\r\n    \"name\":\"Desktop Pc\",\r\n    \"categoryId\":1,\r\n    \"price\":30000,\r\n    \"descriptions\":\"Hp intel\",\r\n    \"quantity\":5\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Desktop Pc",
+											"type": "text"
+										},
+										{
+											"key": "categoryId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "30000",
+											"type": "text"
+										},
+										{
+											"key": "descriptions",
+											"value": "Hp intel",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "imageFiles",
+											"type": "file",
+											"uuid": "ffc6736b-a0c9-4c7e-ad36-0d373ff1a231",
+											"src": "postman-cloud:///1f0be2c5-3735-4070-8ce7-d18b81b51fe7"
+										},
+										{
+											"key": "imagesFiles",
+											"type": "file",
+											"uuid": "a72db5d6-9f4f-44a5-8bec-3b9e7e2b1318",
+											"src": "postman-cloud:///1f0be2c6-6cdb-40c0-8826-76ce1207abc4"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{baseUrl}}/products",
