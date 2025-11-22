@@ -1372,21 +1372,23 @@
 		{
 			"listen": "prerequest",
 			"script": {
+				"id": "a17785f9-2579-4d51-9c92-f0da6a25c979",
 				"type": "text/javascript",
+				"requests": {},
 				"exec": [
 					""
-				],
-				"id": "3ce519df-dda9-44f0-83f8-b053be557d77"
+				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
+				"id": "e68bdbc1-8876-483f-a774-c317b200505d",
 				"type": "text/javascript",
+				"requests": {},
 				"exec": [
 					""
-				],
-				"id": "e41422e5-c48b-4f82-a198-f0eb33e3217f"
+				]
 			}
 		}
 	],
