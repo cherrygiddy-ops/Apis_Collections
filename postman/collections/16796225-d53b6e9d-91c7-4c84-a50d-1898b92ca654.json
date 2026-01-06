@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "16796225-d53b6e9d-91c7-4c84-a50d-1898b92ca654",
+		"name": "AI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CHATBOT",
+			"item": [
+				{
+					"name": "prompt",
+					"id": "16796225-359988a3-9343-40a5-a746-55ea962754ff",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prompt\":\"how can get job as software engenieer?\",\r\n    \"conversationId\":\"conver1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/chat",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"chat"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-b680505d-80b7-4459-943b-3c7fbfa4ea55"
+		},
+		{
+			"name": "Review_Summarizer",
+			"item": [
+				{
+					"name": "get Product Reviews",
+					"id": "16796225-2558c22a-5ed4-4bf7-a761-208ac47fdcfa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/1/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "summarize",
+					"id": "16796225-b4a59526-203b-4f41-993d-596542c7234b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/products/10/reviews/summarize",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"10",
+								"reviews",
+								"summarize"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "16796225-a5633a9a-8f8e-4069-b119-ee5e9baf3cde"
+		}
+	]
+}
